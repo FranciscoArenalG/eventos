@@ -286,7 +286,7 @@
        BUTTONS
     ========================== */
     .whatsapp-btn {
-      margin-top: 100px;
+      margin-top: 115px;
       background: #25D366;
       color: white;
       text-decoration: none;
@@ -309,7 +309,16 @@
     ========================== */
     .blocks {
       position: absolute;
-      bottom: 22vh;
+      bottom: 30vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      z-index: 10;
+    }
+    .blocks-2 {
+      position: absolute;
+      bottom: 18vh;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -334,6 +343,7 @@
     }
 
     .block:nth-child(1) { background: #ff5252; }
+    .block-2:nth-child(1) { background: #ff80ab; }
     .block:nth-child(2) { background: #42a5f5; animation-delay: .2s; }
     .block:nth-child(3) { background: #66bb6a; animation-delay: .4s; }
     .block:nth-child(4) { background: #ffca28; animation-delay: .6s; color: #333;}
@@ -412,7 +422,8 @@
     @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
     @media(max-width:768px) {
-      .blocks { bottom: 18vh; }
+      .blocks { bottom: 10vh; }
+      .blocks-2 { bottom: 18vh; }
       .block { width: 50px; height: 50px; font-size: 1.5rem; }
       .gif-jessie { width: 90px; }
       .main-title { font-size: 3.5rem; margin-top: 0;}
@@ -444,8 +455,10 @@
     <div class="balloon b2"></div>
     <div class="balloon b3"></div>
 
+    <div class="blocks-2">
+      <div class="block block-2">2</div>
+    </div>
     <div class="blocks">
-      <div class="block">2</div>
       <div class="block">A</div>
       <div class="block">Ñ</div>
       <div class="block">O</div>
@@ -461,7 +474,7 @@
         <p>🎂 Cumpleaños Infantil</p>
         <p>📅 01 Agosto 2026</p>
         <p>⏰ 13:00 Horas</p>
-        <p>🎁 Regalo obligatorio</p>
+        <p>🎁 Si no hay regalo no hay comida!</p>
         <a class="map" href="https://maps.app.goo.gl/YH9CP4EsP8xYFiTn6" target="_blank">
           📍 1a. Cda. Apango 15-3, Gral Felipe Berriozabal, CDMX
         </a>
