@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
   <meta charset="UTF-8" />
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Barbara Birthday Invitation</title>
 
-  <!-- FONT -->
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
-
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* Variables Toy Story */
+    :root {
+      --amarillo-logo: #FFD700;
+      --rojo-logo: #FF0000;
+      --azul-oscuro: #00008B;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -28,40 +27,22 @@
       overflow: hidden;
       font-family: 'Fredoka', sans-serif;
       min-height: 100vh;
-
-      background:
-        linear-gradient(to bottom,
-          #78d3ff,
-          #bcecff);
-    }
-
-    .scene {
-      position: fixed;
-      inset: 0;
-      overflow: hidden;
+      background-color: #00BFFF;
     }
 
     /* =========================
        LOADER
     ========================== */
-
     .loader {
       position: fixed;
       inset: 0;
-
       z-index: 9999;
-
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-
-      background:
-        linear-gradient(to bottom,
-          #5ec6ff,
-          #1d7eff);
-
-      transition: 1s ease;
+      background: linear-gradient(to bottom, #5ec6ff, #1d7eff);
+      transition: opacity 1s ease;
     }
 
     .loader.hide {
@@ -71,19 +52,13 @@
 
     .loader-logo {
       text-align: center;
-      font-size:
-        clamp(3rem, 8vw, 7rem);
-
+      font-size: clamp(2.5rem, 8vw, 5rem);
       color: #ffe066;
-
-      text-shadow:
-        0 4px 0 #d32f2f,
-        0 0 25px rgba(255, 255, 255, .5);
-
-      animation:
-        bounce 1.5s infinite;
+      text-shadow: 0 4px 0 #d32f2f, 0 0 25px rgba(255, 255, 255, .5);
+      animation: bounce 1.5s infinite;
       font-weight: bold;
-
+      font-family: 'Arial Black', Impact, sans-serif;
+      -webkit-text-stroke: 2px var(--azul-oscuro);
     }
 
     .loader-text {
@@ -91,358 +66,238 @@
       margin-top: 20px;
       color: white;
       letter-spacing: 5px;
+      font-weight: bold;
     }
 
     /* =========================
-       SKY
+       INTRO CINEMATOGRÁFICA
     ========================== */
+    #pantalla-intro {
+      position: fixed;
+      inset: 0;
+      background-color: #000;
+      display: none; /* Se muestra por JS después del loader */
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9000;
+      transition: opacity 1.5s ease-out;
+    }
+
+    .texto-intro {
+      color: white;
+      font-size: clamp(1rem, 4vw, 1.5rem);
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      opacity: 0;
+      text-align: center;
+      padding: 0 20px;
+      animation: fadeInOutIntro 4s forwards;
+    }
+
+    .boton-entrar {
+      margin-top: 40px;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: bold;
+      background-color: var(--rojo-logo);
+      color: white;
+      border: 3px solid white;
+      border-radius: 25px;
+      cursor: pointer;
+      opacity: 0;
+      animation: fadeIn 2s forwards 3s;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .boton-entrar:hover {
+      transform: scale(1.1);
+      background-color: var(--amarillo-logo);
+      color: var(--rojo-logo);
+      border-color: var(--azul-oscuro);
+    }
+
+    /* =========================
+       SCENE & SKY (NUBES DE ANDY)
+    ========================== */
+    .scene {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      display: none; /* Se muestra tras dar click en entrar */
+    }
 
     .sky {
       position: absolute;
       inset: 0;
-
-      background:
-        linear-gradient(to bottom,
-          #72cfff,
-          #bdeaff);
+      background-color: #00BFFF;
+      background-image: 
+          radial-gradient(circle 30px at 50px 50px, #ffffff 100%, transparent 0),
+          radial-gradient(circle 40px at 80px 40px, #ffffff 100%, transparent 0),
+          radial-gradient(circle 30px at 110px 50px, #ffffff 100%, transparent 0),
+          radial-gradient(circle 50px at 200px 150px, #ffffff 100%, transparent 0),
+          radial-gradient(circle 60px at 250px 140px, #ffffff 100%, transparent 0),
+          radial-gradient(circle 50px at 300px 150px, #ffffff 100%, transparent 0);
+      background-size: 350px 250px;
+      animation: floatCloud 40s linear infinite;
     }
-
-    /* =========================
-       CLOUDS
-    ========================== */
-
-    .cloud {
-      position: absolute;
-
-      background: white;
-
-      border-radius: 100px;
-
-      opacity: .95;
-
-      filter:
-        drop-shadow(0 10px 20px rgba(0, 0, 0, .08));
-    }
-
-    .cloud::before,
-    .cloud::after {
-      content: '';
-      position: absolute;
-      background: white;
-      border-radius: 50%;
-    }
-
-    .cloud::before {
-      width: 70px;
-      height: 70px;
-      top: -30px;
-      left: 15px;
-    }
-
-    .cloud::after {
-      width: 90px;
-      height: 90px;
-      top: -40px;
-      right: 15px;
-    }
-
-    .cloud1 {
-      width: 220px;
-      height: 70px;
-
-      top: 10%;
-      left: 5%;
-
-      animation:
-        floatCloud 20s infinite alternate;
-    }
-
-    .cloud2 {
-      width: 260px;
-      height: 90px;
-
-      top: 30%;
-      right: 10%;
-
-      animation:
-        floatCloud 25s infinite alternate-reverse;
-    }
-
-    .cloud3 {
-      width: 180px;
-      height: 60px;
-
-      top: 60%;
-      left: 25%;
-
-      animation:
-        floatCloud 18s infinite alternate;
-    }
-
-    /* =========================
-       SUN LIGHT
-    ========================== */
 
     .sunlight {
       position: absolute;
-
       width: 1000px;
       height: 1000px;
-
       top: -350px;
       right: -350px;
-
-      background:
-        radial-gradient(circle,
-          rgba(255, 255, 255, .6),
-          transparent 70%);
-
-      animation:
-        pulse 8s infinite;
+      background: radial-gradient(circle, rgba(255, 255, 255, .6), transparent 70%);
+      animation: pulse 8s infinite;
     }
 
     /* =========================
        FLOOR
     ========================== */
-
     .floor {
       position: absolute;
-
       bottom: 0;
       width: 100%;
       height: 28vh;
-
-      background:
-        repeating-linear-gradient(90deg,
-          #d89453 0px,
-          #d89453 70px,
-          #c37d3a 70px,
-          #c37d3a 74px);
-
-      box-shadow:
-        inset 0 10px 30px rgba(0, 0, 0, .2);
+      background: repeating-linear-gradient(90deg, #d89453 0px, #d89453 70px, #c37d3a 70px, #c37d3a 74px);
+      box-shadow: inset 0 10px 30px rgba(0, 0, 0, .2);
+      z-index: 1;
     }
 
     /* =========================
        MAIN CONTENT
     ========================== */
-
     .intro {
       position: absolute;
       inset: 0;
-
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-
       z-index: 20;
-
       text-align: center;
-
       padding: 20px;
+      padding-bottom: 5vh; /* Ajuste para espacio en móviles */
     }
 
     .mini-title {
-
-      color: black;
-
-      letter-spacing: 8px;
-
-      font-size: 1rem;
-
-      text-shadow:
-        0 2px 10px rgba(0, 0, 0, .2);
-
+      color: #333;
+      letter-spacing: 5px;
+      font-size: clamp(0.8rem, 3vw, 1rem);
+      font-weight: bold;
+      text-shadow: 0 2px 10px rgba(255, 255, 255, .8);
       opacity: 0;
-
-      animation:
-        fadeUp 1.5s forwards;
+      animation: fadeUp 1.5s forwards 0.5s;
     }
 
+    /* ESTILO TOY STORY PARA EL TÍTULO */
     .main-title {
-
-      margin-top: 20px;
-
-      font-size:
-        clamp(2rem, 12vw, 10rem);
-
-      color: #ffe066;
-
-      text-shadow:
-        0 4px 0 #d32f2f,
-        0 10px 30px rgba(0, 0, 0, .25);
-
-      transform:
-        scale(.2) rotate(-10deg);
-
+      margin-top: 10px;
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-family: 'Arial Black', Impact, sans-serif;
+      color: var(--amarillo-logo);
+      -webkit-text-stroke: 3px var(--azul-oscuro);
+      text-shadow: 4px 4px 0px var(--rojo-logo);
+      transform: scale(.2) rotate(-10deg);
       opacity: 0;
-
-      animation:
-        titleEntrance 2.5s cubic-bezier(.16, 1, .3, 1) forwards;
-      font-weight: bold;
-
+      line-height: 1;
+      animation: titleEntrance 2s cubic-bezier(.16, 1, .3, 1) forwards 1s;
     }
 
     .birthday {
-
       margin-top: 15px;
-
-      color: black;
-
-      font-size:
-        clamp(1.2rem, 4vw, 2.3rem);
-
-      letter-spacing: 4px;
-
+      color: var(--azul-oscuro);
+      font-weight: bold;
+      font-size: clamp(1rem, 4vw, 1.8rem);
+      letter-spacing: 2px;
       opacity: 0;
-
-      animation:
-        fadeIn 2s ease 1s forwards;
+      animation: fadeIn 2s ease 1.5s forwards;
     }
 
     /* =========================
        CARD
     ========================== */
-
     .card {
-
-      margin-top: 30px;
-
-      background:
-        rgba(255, 255, 255, .25);
-
+      margin-top: 20px;
+      background: rgba(255, 255, 255, .85);
       backdrop-filter: blur(10px);
-
       border-radius: 30px;
-
-      padding: 25px 35px;
-
-      color: white;
-
-      box-shadow:
-        0 20px 40px rgba(0, 0, 0, .15);
-
+      border: 4px solid var(--rojo-logo);
+      padding: 20px 30px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, .3);
       opacity: 0;
-
-      animation:
-        fadeIn 2s ease 1.5s forwards;
+      animation: fadeIn 2s ease 2s forwards;
+      max-width: 90%;
     }
 
     .card p {
-      color: black;
-      margin: 0 0;
-      font-size: 1.2rem;
+      color: #333;
+      margin: 8px 0;
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      font-weight: 600;
+    }
+
+    .map {
+      display: inline-block;
+      color: var(--azul-oscuro);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      margin-top: 10px;
     }
 
     /* =========================
        COUNTDOWN
     ========================== */
-
     .countdown {
-
       display: flex;
       gap: 15px;
-
       justify-content: center;
       flex-wrap: wrap;
-
-      margin-top: 60px;
-
+      margin-top: 20px;
       opacity: 0;
-
-      animation:
-        fadeIn 2s ease 2s forwards;
+      animation: fadeIn 2s ease 2.5s forwards;
     }
 
     .time-box {
-
-      width: 100px;
-      height: 100px;
-
-      background:
-        rgba(255, 255, 255, .25);
-
-      border-radius: 20px;
-
-      backdrop-filter: blur(10px);
-
+      width: 80px;
+      height: 80px;
+      background: rgba(255, 255, 255, .9);
+      border: 3px solid var(--azul-oscuro);
+      border-radius: 15px;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-
-      color: black;
-
-      box-shadow:
-        0 10px 25px rgba(0, 0, 0, .15);
+      color: var(--rojo-logo);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, .2);
     }
 
     .time-box span {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: bold;
+      font-family: 'Arial Black', sans-serif;
     }
+    .time-box small { color: #333; font-weight: bold; }
 
     /* =========================
        BUTTONS
     ========================== */
-
-    .button {
-
-      margin-top: 30px;
-
-      background: #ff5252;
-      color: white;
-
-      border: none;
-      border-radius: 50px;
-
-      padding: 18px 40px;
-
-      font-size: 1rem;
-      font-weight: bold;
-
-      cursor: pointer;
-
-      box-shadow:
-        0 10px 25px rgba(0, 0, 0, .2);
-
-      transition: .3s;
-
-      opacity: 0;
-
-      animation:
-        fadeIn 2s ease 2.5s forwards;
-    }
-
-    .button:hover {
-      transform: scale(1.05);
-    }
-
     .whatsapp-btn {
-
-      margin-top: 10px;
-
+      margin-top: 100px;
       background: #25D366;
       color: white;
-
       text-decoration: none;
-
-      padding: 18px 35px;
-
+      padding: 15px 30px;
       border-radius: 50px;
-
       font-weight: bold;
-
-      box-shadow:
-        0 10px 25px rgba(0, 0, 0, .2);
-
+      box-shadow: 0 10px 25px rgba(0, 0, 0, .2);
       transition: .3s;
-
       opacity: 0;
-
-      animation:
-        fadeIn 2s ease 3s forwards;
+      display: inline-block;
+      animation: fadeIn 2s ease 3s forwards;
     }
 
     .whatsapp-btn:hover {
@@ -450,777 +305,286 @@
     }
 
     /* =========================
-       BLOCKS
+       BLOCKS (2 AÑOS)
     ========================== */
-
     .blocks {
-
       position: absolute;
-
-      bottom: 20vh;
-
+      bottom: 22vh;
       width: 100%;
-
       display: flex;
       justify-content: center;
-      gap: 18px;
-
+      gap: 15px;
       z-index: 10;
     }
 
     .block {
-
-      width: 90px;
-      height: 90px;
-
-      border-radius: 18px;
-
+      width: 70px;
+      height: 70px;
+      border-radius: 12px;
       display: flex;
       justify-content: center;
       align-items: center;
-
       font-size: 2rem;
       font-weight: bold;
-
+      font-family: 'Arial Black', sans-serif;
       color: white;
-
-      box-shadow:
-        0 12px 25px rgba(0, 0, 0, .18);
-
-      animation:
-        jump 2s infinite;
+      box-shadow: 0 8px 0px rgba(0,0,0,0.2), inset 0 0 10px rgba(255,255,255,0.5);
+      animation: jump 2s infinite;
+      border: 3px solid #333;
     }
 
-    .block:nth-child(1) {
-      background: #ff5252;
-    }
-
-    .block:nth-child(2) {
-      background: #42a5f5;
-      animation-delay: .2s;
-    }
-
-    .block:nth-child(3) {
-      background: #66bb6a;
-      animation-delay: .4s;
-    }
-
-    .block:nth-child(4) {
-      background: #ffca28;
-      animation-delay: .6s;
-    }
-
-    .block:nth-child(5) {
-      background: #6F4E37;
-      animation-delay: .6s;
-    }
+    .block:nth-child(1) { background: #ff5252; }
+    .block:nth-child(2) { background: #42a5f5; animation-delay: .2s; }
+    .block:nth-child(3) { background: #66bb6a; animation-delay: .4s; }
+    .block:nth-child(4) { background: #ffca28; animation-delay: .6s; color: #333;}
+    .block:nth-child(5) { background: #9c27b0; animation-delay: .8s; }
 
     /* =========================
-       BALLOONS
+       BALLOONS & DECORATION
     ========================== */
-
     .balloon {
-
       position: absolute;
-
-      width: 70px;
-      height: 90px;
-
+      width: 60px;
+      height: 80px;
       border-radius: 50%;
-
-      animation:
-        balloonFloat 6s infinite ease-in-out;
-
+      animation: balloonFloat 6s infinite ease-in-out;
       z-index: 5;
     }
-
     .balloon::after {
-
       content: '';
-
       position: absolute;
-
       width: 2px;
       height: 120px;
-
-      background:
-        rgba(255, 255, 255, .8);
-
+      background: rgba(255, 255, 255, .8);
       left: 50%;
-      top: 90px;
+      top: 80px;
     }
+    .b1 { background: #ff5252; left: 8%; top: 15%; }
+    .b2 { background: #42a5f5; right: 10%; top: 10%; animation-delay: 1s; }
+    .b3 { background: #ffee58; left: 80%; top: 50%; animation-delay: 2s; }
 
-    .b1 {
-      background: #ff5252;
-      left: 8%;
-      top: 20%;
-    }
-
-    .b2 {
-      background: #42a5f5;
-      right: 10%;
-      top: 18%;
-      animation-delay: 1s;
-    }
-
-    .b3 {
-      background: #ffee58;
-      left: 20%;
-      top: 55%;
-      animation-delay: 2s;
-    }
-
-    /* =========================
-       CONFETTI
-    ========================== */
-
-    .confetti {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 15;
-    }
-
-    .piece {
-
-      position: absolute;
-
-      width: 8px;
-      height: 16px;
-
-      opacity: .8;
-
-      animation:
-        confettiFall linear infinite;
-    }
-
-    /* =========================
-       MUSIC BUTTON
-    ========================== */
+    .confetti { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 30; }
+    .piece { position: absolute; width: 8px; height: 16px; opacity: .8; animation: confettiFall linear infinite; }
 
     .music-btn {
-
       position: absolute;
-
       top: 20px;
       right: 20px;
-
-      width: 60px;
-      height: 60px;
-
+      width: 50px;
+      height: 50px;
       border: none;
       border-radius: 50%;
-
-      background:
-        rgba(255, 255, 255, .3);
-
-      backdrop-filter: blur(10px);
-
-      color: white;
-
+      background: rgba(255, 255, 255, .8);
+      color: var(--azul-oscuro);
       font-size: 1.5rem;
-
       cursor: pointer;
-
       z-index: 50;
-      animation: pulse 2s infinite;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
-    /* =========================
-       STARS
-    ========================== */
-
-    .star {
-
+    .gif-jessie {
       position: absolute;
-
-      width: 4px;
-      height: 4px;
-
-      background: white;
-
-      border-radius: 50%;
-
-      animation:
-        twinkle 3s infinite;
-    }
-
-    /* =========================
-       PARTICLES
-    ========================== */
-
-    .particle {
-
-      position: absolute;
-
-      width: 6px;
-      height: 6px;
-
-      border-radius: 50%;
-
-      background:
-        rgba(255, 255, 255, .8);
-
-      animation:
-        floatParticle linear infinite;
+      bottom: 25vh;
+      left: 5%;
+      width: 120px;
+      z-index: 15;
+      animation: bounce 2s infinite;
     }
 
     /* =========================
        ANIMATIONS
     ========================== */
-
-    @keyframes fadeUp {
-
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes fadeInOutIntro { 0% { opacity: 0; transform: scale(0.9); } 30% { opacity: 1; transform: scale(1); } 70% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1.1); } }
+    
     @keyframes titleEntrance {
-
-      0% {
-        opacity: 0;
-
-        transform:
-          scale(.2) rotate(-20deg) translateY(200px);
-      }
-
-      70% {
-        opacity: 1;
-
-        transform:
-          scale(1.08) rotate(5deg) translateY(0);
-      }
-
-      100% {
-        opacity: 1;
-
-        transform:
-          scale(1) rotate(-2deg) translateY(0);
-      }
+      0% { opacity: 0; transform: scale(.2) rotate(-20deg) translateY(200px); }
+      70% { opacity: 1; transform: scale(1.1) rotate(5deg) translateY(0); }
+      100% { opacity: 1; transform: scale(1) rotate(-2deg) translateY(0); }
     }
 
-    @keyframes floatCloud {
-
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(120px);
-      }
-    }
-
-    @keyframes pulse {
-
-      0%,
-      100% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.08);
-      }
-    }
-
-    @keyframes jump {
-
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-15px);
-      }
-    }
-
-    @keyframes balloonFloat {
-
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-25px);
-      }
-    }
-
-    @keyframes confettiFall {
-
-      from {
-        transform:
-          translateY(-10vh) rotate(0deg);
-      }
-
-      to {
-        transform:
-          translateY(110vh) rotate(720deg);
-      }
-    }
-
-    @keyframes twinkle {
-
-      0%,
-      100% {
-        opacity: .3;
-        transform: scale(1);
-      }
-
-      50% {
-        opacity: 1;
-        transform: scale(2);
-      }
-    }
-
-    @keyframes floatParticle {
-
-      from {
-        transform: translateY(100vh);
-        opacity: 0;
-      }
-
-      20% {
-        opacity: 1;
-      }
-
-      to {
-        transform: translateY(-20vh);
-        opacity: 0;
-      }
-    }
-
-    @keyframes bounce {
-
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-20px);
-      }
-    }
-
-    /* =========================
-       RESPONSIVE
-    ========================== */
+    @keyframes floatCloud { from { background-position: 0 0; } to { background-position: 1000px 0; } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+    @keyframes jump { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+    @keyframes balloonFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-25px); } }
+    @keyframes confettiFall { from { transform: translateY(-10vh) rotate(0deg); } to { transform: translateY(110vh) rotate(720deg); } }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
     @media(max-width:768px) {
-
-      .card {
-        width: 90%;
-      }
-
-      .blocks {
-        gap: 10px;
-      }
-
-      .block {
-        width: 65px;
-        height: 65px;
-        font-size: 1.5rem;
-      }
-
-      .balloon {
-        width: 50px;
-        height: 70px;
-      }
-
-      .time-box {
-        width: 80px;
-        height: 80px;
-      }
-
-    }
-
-    .map {
-      display: inline-block;
-      color: black;
-      /* margin-top: 10px; */
-      /* color: #25D366; */
-      text-decoration: none;
-      animation: pulse 2s infinite;
+      .blocks { bottom: 18vh; }
+      .block { width: 50px; height: 50px; font-size: 1.5rem; }
+      .gif-jessie { width: 90px; }
+      .main-title { font-size: 3.5rem; margin-top: 0;}
+      .card { padding: 15px; margin-top: 10px; }
+      .countdown { margin-top: 10px; }
+      .time-box { width: 65px; height: 65px; }
+      .time-box span { font-size: 1.2rem; }
     }
   </style>
-
 </head>
-
 <body>
 
-  <!-- LOADER -->
-
   <div class="loader" id="loader">
-
-    <div class="loader-logo">
-      BARBARA REGINA
+    <div class="loader-logo">BARBARA REGINA</div>
+    <div class="loader-text">CARGANDO AVENTURA...</div>
+    <img class="img-fluid" src="jessie.gif" alt="Jessie" class="gif-jessie">
     </div>
 
-    <div class="loader-text">
-      CARGANDO AVENTURA...
-
-    </div>
-    <img src="jessie.gif" alt="" srcset="">
+  <div id="pantalla-intro">
+    <div class="texto-intro">Un estudio de animación imaginario presenta...</div>
+    <button class="boton-entrar" id="btn-entrar">Entrar a la habitación</button>
   </div>
 
-  <!-- SCENE -->
-
-  <div class="scene">
-
-
-    <div class="sky"><img src="jessie-estatica.gif" alt=""></div>
-
+  <div class="scene" id="main-scene">
+    <div class="sky"></div>
     <div class="sunlight"></div>
-
-    <!-- CLOUDS -->
-
-    <div class="cloud cloud1"></div>
-    <div class="cloud cloud2"></div>
-    <div class="cloud cloud3"></div>
-
-    <!-- BALLOONS -->
 
     <div class="balloon b1"></div>
     <div class="balloon b2"></div>
     <div class="balloon b3"></div>
 
-    <!-- BLOCKS -->
-
     <div class="blocks">
-
       <div class="block">2</div>
       <div class="block">A</div>
       <div class="block">Ñ</div>
       <div class="block">O</div>
       <div class="block">S</div>
-
     </div>
-
-    <!-- INTRO -->
 
     <div class="intro">
-
-      <div class="mini-title">
-        Estás invitado al cumpleaños de
-      </div>
-
-      <div class="main-title">
-        BARBARA REGINA
-      </div>
-
-      <div class="birthday">
-        ¡CELEBRA CON NOSOTROS!
-      </div>
-
-      <!-- CARD -->
+      <div class="mini-title">Estás invitado al cumpleaños de</div>
+      <div class="main-title">BARBARA<br>REGINA</div>
+      <div class="birthday">¡CELEBRA CON NOSOTROS!</div>
 
       <div class="card">
-
         <p>🎂 Cumpleaños Infantil</p>
-
         <p>📅 01 Agosto 2026</p>
-
         <p>⏰ 13:00 Horas</p>
-
-        <a class="map" href="https://maps.app.goo.gl/YH9CP4EsP8xYFiTn6" target="_blank">📍 1a. Cda. Apango 15-3, Gral
-          Felipe Berriozabal, Gustavo A. Madero, 07180 Ciudad de México, CDMX</a>
-
+        <p>🎁 Regalo obligatorio</p>
+        <a class="map" href="https://maps.app.goo.gl/YH9CP4EsP8xYFiTn6" target="_blank">
+          📍 1a. Cda. Apango 15-3, Gral Felipe Berriozabal, CDMX
+        </a>
       </div>
-
-      <!-- COUNTDOWN -->
 
       <div class="countdown">
-
-        <div class="time-box">
-          <span id="days">00</span>
-          <small>Días</small>
-        </div>
-
-        <div class="time-box">
-          <span id="hours">00</span>
-          <small>Horas</small>
-        </div>
-
-        <div class="time-box">
-          <span id="minutes">00</span>
-          <small>Min</small>
-        </div>
-
+        <div class="time-box"><span id="days">00</span><small>Días</small></div>
+        <div class="time-box"><span id="hours">00</span><small>Horas</small></div>
+        <div class="time-box"><span id="minutes">00</span><small>Min</small></div>
       </div>
 
-      <!-- BUTTON -->
-
-      <!-- <button class="button">
-        CONFIRMAR ASISTENCIA
-      </button> -->
-
-      <!-- WHATSAPP -->
-
-      <a href="https://wa.me/5535296643" target="_blank" class="whatsapp-btn">
-
-        CONFIRMAR POR WHATSAPP
-
-      </a>
-
+      <a href="https://wa.me/5535296643" target="_blank" class="whatsapp-btn">CONFIRMAR POR WHATSAPP</a>
     </div>
-
-    <!-- FLOOR -->
 
     <div class="floor"></div>
 
-    <!-- CONFETTI -->
-
     <div class="confetti" id="confetti"></div>
 
-    <!-- MUSIC BUTTON -->
-
-    <button class="music-btn" id="musicBtn">
-
-      ♪
-
-    </button>
-
+    <button class="music-btn" id="musicBtn">♫</button>
   </div>
 
-
-  <!-- MUSIC -->
-
   <audio id="music" loop>
-
     <source src="toy-story-music.mp3" type="audio/mpeg">
-
   </audio>
 
-  <!-- JAVASCRIPT -->
-
   <script>
-
-    // =========================
-    // LOADER
-    // =========================
-
+    // FLUJO DE CARGA Y PANTALLA CINEMATOGRÁFICA
     window.addEventListener('load', () => {
-
+      // 1. Espera 2.5s y oculta el loader original
       setTimeout(() => {
-
-        document
-          .getElementById('loader')
-          .classList.add('hide');
+        document.getElementById('loader').classList.add('hide');
+        
+        // 2. Muestra la pantalla negra de cine
+        setTimeout(() => {
+          document.getElementById('loader').style.display = 'none';
+          document.getElementById('pantalla-intro').style.display = 'flex';
+        }, 1000); // Tiempo de fade del loader
 
       }, 2500);
+    });
 
+    // 3. Al hacer clic en entrar:
+    const btnEntrar = document.getElementById('btn-entrar');
+    const music = document.getElementById('music');
+    let playing = false;
+
+    btnEntrar.addEventListener('click', () => {
+      const intro = document.getElementById('pantalla-intro');
+      const scene = document.getElementById('main-scene');
+
+      intro.style.opacity = '0';
+      
+      // Reproducir música automáticamente
+      music.play();
+      playing = true;
+
+      setTimeout(() => {
+        intro.style.display = 'none';
+        scene.style.display = 'block'; // Esto reinicia las animaciones CSS de la escena
+      }, 1000);
     });
 
     // =========================
     // CONFETTI
     // =========================
-
-    const confetti =
-      document.getElementById('confetti');
-
-    const colors = [
-      '#ff5252',
-      '#42a5f5',
-      '#ffee58',
-      '#66bb6a',
-      '#ff80ab'
-    ];
-
-    for (let i = 0; i < 120; i++) {
-
-      const piece =
-        document.createElement('div');
-
+    const confetti = document.getElementById('confetti');
+    const colors = ['#ff5252', '#42a5f5', '#ffee58', '#66bb6a', '#ff80ab'];
+    for (let i = 0; i < 80; i++) {
+      const piece = document.createElement('div');
       piece.classList.add('piece');
-
-      piece.style.left =
-        Math.random() * 100 + 'vw';
-
-      piece.style.background =
-        colors[
-        Math.floor(
-          Math.random() * colors.length
-        )
-        ];
-
-      piece.style.animationDuration =
-        (Math.random() * 4 + 4) + 's';
-
-      piece.style.animationDelay =
-        Math.random() * 5 + 's';
-
+      piece.style.left = Math.random() * 100 + 'vw';
+      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.animationDuration = (Math.random() * 4 + 4) + 's';
+      piece.style.animationDelay = Math.random() * 5 + 's';
       confetti.appendChild(piece);
     }
 
     // =========================
     // COUNTDOWN
     // =========================
-
-    const targetDate =
-      new Date('2026-08-01T13:00:00');
-
+    const targetDate = new Date('2026-08-01T13:00:00');
     function updateCountdown() {
-
       const now = new Date();
+      const diff = targetDate - now;
+      if(diff <= 0) return; // Si ya pasó, no hacer nada negativo
 
-      const diff =
-        targetDate - now;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 
-      const days =
-        Math.floor(
-          diff / (1000 * 60 * 60 * 24)
-        );
-
-      const hours =
-        Math.floor(
-          (
-            diff %
-            (1000 * 60 * 60 * 24)
-          )
-          /
-          (1000 * 60 * 60)
-        );
-
-      const minutes =
-        Math.floor(
-          (
-            diff %
-            (1000 * 60 * 60)
-          )
-          /
-          (1000 * 60)
-        );
-
-      document
-        .getElementById('days')
-        .innerHTML = days;
-
-      document
-        .getElementById('hours')
-        .innerHTML = hours;
-
-      document
-        .getElementById('minutes')
-        .innerHTML = minutes;
+      document.getElementById('days').innerHTML = days;
+      document.getElementById('hours').innerHTML = hours;
+      document.getElementById('minutes').innerHTML = minutes;
     }
-
     setInterval(updateCountdown, 1000);
-
     updateCountdown();
 
     // =========================
-    // STARS
+    // BOTÓN DE MÚSICA
     // =========================
-
-    for (let i = 0; i < 80; i++) {
-
-      const star =
-        document.createElement('div');
-
-      star.classList.add('star');
-
-      star.style.left =
-        Math.random() * 100 + 'vw';
-
-      star.style.top =
-        Math.random() * 100 + 'vh';
-
-      star.style.animationDelay =
-        Math.random() * 5 + 's';
-
-      document.body.appendChild(star);
-    }
-
-    // =========================
-    // FLOAT PARTICLES
-    // =========================
-
-    for (let i = 0; i < 50; i++) {
-
-      const particle =
-        document.createElement('div');
-
-      particle.classList.add('particle');
-
-      particle.style.left =
-        Math.random() * 100 + 'vw';
-
-      particle.style.animationDuration =
-        (Math.random() * 8 + 6) + 's';
-
-      particle.style.animationDelay =
-        Math.random() * 10 + 's';
-
-      document.body.appendChild(particle);
-    }
-
-    // =========================
-    // MUSIC
-    // =========================
-
-    const music =
-      document.getElementById('music');
-
-    const musicBtn =
-      document.getElementById('musicBtn');
-
-    let playing = false;
-
+    const musicBtn = document.getElementById('musicBtn');
     musicBtn.addEventListener('click', () => {
-
       if (!playing) {
-
         music.play();
-
         musicBtn.innerHTML = '♫';
-
       } else {
-
         music.pause();
-
         musicBtn.innerHTML = '♪';
       }
-
       playing = !playing;
-
     });
 
     // =========================
-    // CAMERA EFFECT
+    // CAMERA EFFECT (Movimiento suave de la escena)
     // =========================
-
     let move = 0;
-
     function animate() {
-
       move += 0.01;
-
-      document
-        .querySelector('.scene')
-        .style.transform =
-        `translateY(${Math.sin(move) * 2}px)`;
-
+      document.querySelector('.scene').style.transform = `translateY(${Math.sin(move) * 2}px)`;
       requestAnimationFrame(animate);
     }
-
     animate();
-
   </script>
 
 </body>
-
 </html>
