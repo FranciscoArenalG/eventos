@@ -82,6 +82,8 @@
 
       animation:
         bounce 1.5s infinite;
+      font-weight: bold;
+
     }
 
     .loader-text {
@@ -278,6 +280,8 @@
 
       animation:
         titleEntrance 2.5s cubic-bezier(.16, 1, .3, 1) forwards;
+      font-weight: bold;
+
     }
 
     .birthday {
@@ -327,7 +331,7 @@
 
     .card p {
       color: black;
-      margin: 12px 0;
+      margin: 0 0;
       font-size: 1.2rem;
     }
 
@@ -343,7 +347,7 @@
       justify-content: center;
       flex-wrap: wrap;
 
-      margin-top: 25px;
+      margin-top: 60px;
 
       opacity: 0;
 
@@ -368,7 +372,7 @@
       align-items: center;
       flex-direction: column;
 
-      color: white;
+      color: black;
 
       box-shadow:
         0 10px 25px rgba(0, 0, 0, .15);
@@ -417,7 +421,7 @@
 
     .whatsapp-btn {
 
-      margin-top: 20px;
+      margin-top: 10px;
 
       background: #25D366;
       color: white;
@@ -453,7 +457,7 @@
 
       position: absolute;
 
-      bottom: 24vh;
+      bottom: 20vh;
 
       width: 100%;
 
@@ -505,6 +509,7 @@
       background: #ffca28;
       animation-delay: .6s;
     }
+
     .block:nth-child(5) {
       background: #6F4E37;
       animation-delay: .6s;
@@ -619,6 +624,7 @@
       cursor: pointer;
 
       z-index: 50;
+      animation: pulse 2s infinite;
     }
 
     /* =========================
@@ -841,6 +847,15 @@
       }
 
     }
+
+    .map {
+      display: inline-block;
+      color: black;
+      /* margin-top: 10px; */
+      /* color: #25D366; */
+      text-decoration: none;
+      animation: pulse 2s infinite;
+    }
   </style>
 
 </head>
@@ -921,7 +936,8 @@
 
         <p>⏰ 13:00 Horas</p>
 
-        <p>📍 Mi Casita</p>
+        <a class="map" href="https://maps.app.goo.gl/YH9CP4EsP8xYFiTn6" target="_blank">📍 1a. Cda. Apango 15-3, Gral
+          Felipe Berriozabal, Gustavo A. Madero, 07180 Ciudad de México, CDMX</a>
 
       </div>
 
