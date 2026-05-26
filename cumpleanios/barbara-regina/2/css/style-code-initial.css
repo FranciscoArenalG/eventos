@@ -620,3 +620,193 @@
                 font-size: 1.2rem;
             }
         }
+
+        /* Estilos nuevos */
+        /* =========================
+   SOBRE CINEMATOGRÁFICO
+========================= */
+
+        .envelope-scene {
+            position: relative;
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 2000px;
+        }
+
+        /* GLOW */
+
+        .magic-glow {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle,
+                    rgba(255, 217, 61, .6),
+                    transparent 70%);
+            filter: blur(40px);
+            animation: pulseGlow 3s infinite;
+        }
+
+        /* WRAPPER */
+
+        .envelope-wrapper {
+            position: relative;
+            width: 340px;
+            height: 220px;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            animation: floatEnvelope 4s ease-in-out infinite;
+            transition: transform 1s ease;
+        }
+
+        /* ENVELOPE */
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg,
+                    #d8b07c,
+                    #b9854d);
+            border-radius: 14px;
+            box-shadow:
+                0 30px 60px rgba(0, 0, 0, .45),
+                inset 0 2px 10px rgba(255, 255, 255, .3);
+            overflow: hidden;
+        }
+
+        /* FLAP */
+
+        .envelope-flap {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg,
+                    #c99761,
+                    #a56d38);
+
+            clip-path: polygon(0 0,
+                    50% 55%,
+                    100% 0);
+
+            transform-origin: top;
+            transition: transform 1.2s ease;
+            z-index: 5;
+        }
+
+        /* LETTER */
+
+        .envelope-letter {
+            position: absolute;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            height: 170px;
+            background: #fffef7;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            color: #333;
+            transform: translateY(40px);
+            transition: all 1s ease;
+            z-index: 2;
+            box-shadow:
+                0 10px 20px rgba(0, 0, 0, .15);
+        }
+
+        /* TEXT */
+
+        .letter-header {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #d97706;
+            margin-bottom: 14px;
+        }
+
+        .letter-body {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .letter-footer {
+            margin-top: 18px;
+            font-size: .95rem;
+            color: #777;
+        }
+
+        /* HOVER */
+
+        .envelope-wrapper:hover .envelope-flap {
+            transform: rotateX(180deg);
+        }
+
+        .envelope-wrapper:hover .envelope-letter {
+            transform: translateY(-10px);
+        }
+
+        /* FLOAT */
+
+        @keyframes floatEnvelope {
+
+            0% {
+                transform: translateY(0px) rotate(-1deg);
+            }
+
+            50% {
+                transform: translateY(-12px) rotate(1deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(-1deg);
+            }
+
+        }
+
+        /* GLOW */
+
+        @keyframes pulseGlow {
+
+            0% {
+                opacity: .5;
+                transform: scale(.9);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+
+            100% {
+                opacity: .5;
+                transform: scale(.9);
+            }
+
+        }
+
+        /* OPEN EFFECT */
+
+        .envelope-open {
+            animation: openEnvelope 2s forwards;
+        }
+
+        @keyframes openEnvelope {
+
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+
+            100% {
+                transform:
+                    scale(6) rotate(8deg);
+                opacity: 0;
+            }
+
+        }

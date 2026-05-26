@@ -1,29 +1,26 @@
 (function blockDevTools() {
 
-    const isMobile =
-        /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
-            .test(navigator.userAgent);
-    if (!isMobile) {
-        setInterval(function () {
-            const widthThreshold = window.outerWidth - window.innerWidth > 160;
-            const heightThreshold = window.outerHeight - window.innerHeight > 160;
 
-            // Si la ventana de herramientas del desarrollador se abre y quita espacio:
-            if (widthThreshold || heightThreshold) {
-                document.body.innerHTML = "<h1 style='color:white; text-align:center; margin-top:20vh;'>¡Ups! La magia se rompió. Cierra el inspeccionador para ver la invitación.</h1>";
-                setTimeout(() => {
-                    location.reload();
-                }, 1000); // Recarga la página después de mostrar el mensaje
-                debugger;
-            }
-        }, 40);
-        setInterval(function () {
-            // Esta función congela la página si el inspector está abierto
-            /* debugger; */
-            /* window.location.reload(); */
-        }, 50); // Se ejecuta cada 50 milisegundos
-        // Borrar el contenido visual si intentan inspeccionar
-    }
+    setInterval(function () {
+        const widthThreshold = window.outerWidth - window.innerWidth > 160;
+        const heightThreshold = window.outerHeight - window.innerHeight > 160;
+
+        // Si la ventana de herramientas del desarrollador se abre y quita espacio:
+        if (widthThreshold || heightThreshold) {
+            document.body.innerHTML = "<h1 style='color:white; text-align:center; margin-top:20vh;'>¡Ups! La magia se rompió. Cierra el inspeccionador para ver la invitación.</h1>";
+            setTimeout(() => {
+                location.reload();
+            }, 1000); // Recarga la página después de mostrar el mensaje
+            debugger;
+        }
+    }, 40);
+    setInterval(function () {
+        // Esta función congela la página si el inspector está abierto
+        /* debugger; */
+        /* window.location.reload(); */
+    }, 50); // Se ejecuta cada 50 milisegundos
+    // Borrar el contenido visual si intentan inspeccionar
+
 })();
 // FLUJO DE CARGA Y PANTALLA CINEMATOGRÁFICA
 window.addEventListener('load', () => {

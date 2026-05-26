@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Barbara Regina | Toy Story Invitation</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Fredoka',sans-serif;
+  overflow:hidden;
+  background:#000;
+  color:white;
+}
+
+/* =========================
+   LOADER
+========================= */
+
+.loader{
+  position:fixed;
+  inset:0;
+  background:
+  radial-gradient(circle at center,#163b7a,#050816);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+}
+
+.loader-logo{
+  font-size:4rem;
+  font-weight:700;
+  color:#ffd93d;
+  letter-spacing:6px;
+  animation:pulse 2s infinite;
+  text-align:center;
+}
+
+.loader-text{
+  margin-top:20px;
+  letter-spacing:4px;
+  opacity:.8;
+}
+
+@keyframes pulse{
+
+  0%{
+    transform:scale(.95);
+    opacity:.5;
+  }
+
+  50%{
+    transform:scale(1);
+    opacity:1;
+  }
+
+  100%{
+    transform:scale(.95);
+    opacity:.5;
+  }
+
+}
+
+/* =========================
+   INTRO CINEMÁTICO
+========================= */
+
+.cinematic-intro{
+  position:fixed;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  overflow:hidden;
+  background:
+  radial-gradient(circle at center,
+  #1f4da1,
+  #071124 80%);
+  z-index:9999;
+}
+
+.intro-overlay{
+  position:absolute;
+  inset:0;
+  background:
+  linear-gradient(
+    to bottom,
+    rgba(255,255,255,.05),
+    rgba(0,0,0,.4)
+  );
+}
+
+.intro-stars{
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(white 1px, transparent 1px);
+  background-size:40px 40px;
+  opacity:.12;
+  animation:starsMove 120s linear infinite;
+}
+
+@keyframes starsMove{
+
+  from{
+    transform:translateY(0);
+  }
+
+  to{
+    transform:translateY(-2000px);
+  }
+
+}
+
+.intro-text-cinematic{
+  position:absolute;
+  top:100px;
+  letter-spacing:5px;
+  font-size:1rem;
+  opacity:.8;
+  text-align:center;
+}
+
+/* =========================
+   SOBRE 3D
+========================= */
+
+.envelope-3d-wrapper{
+  position:relative;
+  width:360px;
+  height:240px;
+  perspective:2500px;
+  cursor:pointer;
+  z-index:10;
+}
+
+.envelope-3d{
+  position:relative;
+  width:100%;
+  height:100%;
+  transform-style:preserve-3d;
+  transition:transform .2s ease;
+}
+
+.magic-light{
+  position:absolute;
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  background:
+  radial-gradient(circle,
+  rgba(255,217,61,.5),
+  transparent 70%);
+  filter:blur(50px);
+  animation:magicPulse 3s infinite;
+}
+
+@keyframes magicPulse{
+
+  0%{
+    opacity:.5;
+    transform:scale(.9);
+  }
+
+  50%{
+    opacity:1;
+    transform:scale(1.1);
+  }
+
+  100%{
+    opacity:.5;
+    transform:scale(.9);
+  }
+
+}
+
+.envelope-shadow{
+  position:absolute;
+  width:100%;
+  height:40px;
+  bottom:-35px;
+  background:rgba(0,0,0,.5);
+  filter:blur(20px);
+  border-radius:50%;
+}
+
+.envelope-back,
+.envelope-front{
+  position:absolute;
+  width:100%;
+  height:100%;
+  border-radius:18px;
+}
+
+.envelope-back{
+  background:linear-gradient(145deg,#d9a66a,#b6773d);
+}
+
+.envelope-front{
+  background:linear-gradient(145deg,#e7bb86,#c68b52);
+
+  clip-path:polygon(
+    0 100%,
+    50% 45%,
+    100% 100%
+  );
+
+  bottom:0;
+  z-index:5;
+}
+
+.envelope-flap-3d{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(145deg,#cf9860,#b8773f);
+
+  clip-path:polygon(
+    0 0,
+    50% 55%,
+    100% 0
+  );
+
+  transform-origin:top;
+  transition:transform 1.5s ease;
+  z-index:10;
+}
+
+.envelope-letter-3d{
+  position:absolute;
+  left:20px;
+  right:20px;
+  bottom:20px;
+  height:180px;
+  background:#fffef7;
+  border-radius:18px;
+  padding:25px;
+  transform:translateY(50px) translateZ(10px);
+  transition:all 1.5s ease;
+  z-index:2;
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,.25);
+}
+
+.letter-content{
+  text-align:center;
+  color:#333;
+}
+
+.letter-content h2{
+  color:#d97706;
+  margin-bottom:20px;
+}
+
+.letter-content p{
+  line-height:1.7;
+}
+
+.letter-content span{
+  display:block;
+  margin-top:20px;
+  opacity:.7;
+}
+
+.stamp{
+  position:absolute;
+  top:20px;
+  right:20px;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background:#ff4d4d;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:1.5rem;
+  z-index:12;
+
+  box-shadow:
+    0 10px 20px rgba(0,0,0,.3);
+}
+
+/* =========================
+   WOODY Y BUZZ
+========================= */
+
+.characters-intro{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.woody-intro,
+.buzz-intro{
+  position:absolute;
+  bottom:0;
+  width:250px;
+  transition:all 1s ease;
+
+  filter:
+    drop-shadow(0 20px 30px rgba(0,0,0,.5));
+}
+
+.woody-intro{
+  left:-20px;
+  animation:woodyFloat 4s ease-in-out infinite;
+}
+
+.buzz-intro{
+  right:-20px;
+  animation:buzzFloat 5s ease-in-out infinite;
+}
+
+@keyframes woodyFloat{
+
+  0%{
+    transform:translateY(0px) rotate(-2deg);
+  }
+
+  50%{
+    transform:translateY(-10px) rotate(2deg);
+  }
+
+  100%{
+    transform:translateY(0px) rotate(-2deg);
+  }
+
+}
+
+@keyframes buzzFloat{
+
+  0%{
+    transform:translateY(0px) rotate(2deg);
+  }
+
+  50%{
+    transform:translateY(-12px) rotate(-2deg);
+  }
+
+  100%{
+    transform:translateY(0px) rotate(2deg);
+  }
+
+}
+
+.open-envelope .envelope-flap-3d{
+  transform:rotateX(180deg);
+}
+
+.open-envelope .envelope-letter-3d{
+  transform:
+    translateY(-120px)
+    translateZ(40px)
+    scale(1.05);
+}
+
+/* =========================
+   MAIN SCENE
+========================= */
+
+.scene{
+  position:fixed;
+  inset:0;
+  overflow:auto;
+  opacity:0;
+  visibility:hidden;
+  transition:2s;
+  background:
+  linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.5)),
+  linear-gradient(#69b8ff,#c9ecff);
+}
+
+/* SKY */
+
+.sky{
+  position:absolute;
+  inset:0;
+  background-image:
+  radial-gradient(circle at 20% 20%, white 0 30px, transparent 31px),
+  radial-gradient(circle at 70% 30%, white 0 40px, transparent 41px),
+  radial-gradient(circle at 40% 60%, white 0 35px, transparent 36px);
+  opacity:.5;
+}
+
+/* BALLOONS */
+
+.balloon{
+  position:absolute;
+  width:80px;
+  height:100px;
+  border-radius:50%;
+  animation:floatBalloon 8s infinite ease-in-out;
+}
+
+.balloon::after{
+  content:'';
+  position:absolute;
+  width:2px;
+  height:100px;
+  background:white;
+  left:50%;
+  top:100%;
+}
+
+.b1{
+  background:#ff4d4d;
+  top:10%;
+  left:10%;
+}
+
+.b2{
+  background:#ffd93d;
+  top:20%;
+  right:15%;
+}
+
+.b3{
+  background:#4dabff;
+  top:40%;
+  left:70%;
+}
+
+@keyframes floatBalloon{
+
+  0%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-20px);
+  }
+
+  100%{
+    transform:translateY(0);
+  }
+
+}
+
+/* CONTENT */
+
+.intro{
+  position:relative;
+  z-index:5;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:100px 20px;
+}
+
+.mini-title{
+  letter-spacing:4px;
+  margin-bottom:20px;
+  color:#fff;
+}
+
+.main-title{
+  font-size:6rem;
+  font-weight:700;
+  line-height:1;
+  color:#ffd93d;
+
+  text-shadow:
+    0 0 20px rgba(0,0,0,.4);
+}
+
+.birthday{
+  margin-top:30px;
+  font-size:2rem;
+  color:#fff;
+}
+
+/* CARD */
+
+.card{
+  margin-top:40px;
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(20px);
+  border-radius:30px;
+  padding:40px;
+  max-width:600px;
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,.2);
+}
+
+.card p{
+  margin-bottom:18px;
+  font-size:1.1rem;
+}
+
+.map{
+  color:#fff;
+  text-decoration:none;
+  display:block;
+  margin-top:20px;
+}
+
+/* COUNTDOWN */
+
+.countdown{
+  display:flex;
+  gap:20px;
+  margin-top:40px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.time-box{
+  background:rgba(255,255,255,.15);
+  padding:20px;
+  border-radius:20px;
+  min-width:120px;
+}
+
+.time-box span{
+  display:block;
+  font-size:2rem;
+  font-weight:700;
+}
+
+/* BUTTON */
+
+.whatsapp-btn{
+  margin-top:40px;
+  display:inline-block;
+  padding:18px 40px;
+  background:#25d366;
+  color:white;
+  text-decoration:none;
+  border-radius:100px;
+  font-weight:700;
+  transition:.4s;
+}
+
+.whatsapp-btn:hover{
+  transform:scale(1.05);
+}
+
+/* MUSIC */
+
+.music-btn{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  width:70px;
+  height:70px;
+  border:none;
+  border-radius:50%;
+  background:#ffd93d;
+  color:black;
+  font-size:1.5rem;
+  cursor:pointer;
+  z-index:1000;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+  body{
+    overflow:auto;
+  }
+
+  .loader-logo{
+    font-size:2rem;
+    text-align:center;
+  }
+
+  .main-title{
+    font-size:3rem;
+  }
+
+  .birthday{
+    font-size:1.2rem;
+  }
+
+  .card{
+    padding:30px 20px;
+  }
+
+  .time-box{
+    min-width:90px;
+  }
+
+  .woody-intro,
+  .buzz-intro{
+    width:150px;
+  }
+
+  .envelope-3d-wrapper{
+    width:300px;
+    height:220px;
+  }
+
+  .intro-text-cinematic{
+    top:60px;
+    padding:0 20px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- LOADER -->
+
+<div class="loader" id="loader">
+
+  <div class="loader-logo">
+    BARBARA REGINA
+  </div>
+
+  <div class="loader-text">
+    CARGANDO AVENTURA...
+  </div>
+
+</div>
+
+<!-- INTRO -->
+
+<div class="cinematic-intro" id="pantalla-intro">
+
+  <div class="intro-overlay"></div>
+
+  <div class="intro-stars"></div>
+
+  <div class="intro-text-cinematic">
+    Un estudio de animación imaginario presenta...
+  </div>
+
+  <!-- SOBRE -->
+
+  <div class="envelope-3d-wrapper" id="btn-entrar">
+
+    <div class="magic-light"></div>
+
+    <div class="envelope-3d">
+
+      <div class="envelope-shadow"></div>
+
+      <div class="envelope-back"></div>
+
+      <div class="envelope-letter-3d">
+
+        <div class="letter-content">
+
+          <h2>🤠 Misión Especial</h2>
+
+          <p>
+            Woody y Buzz necesitan tu ayuda
+            para celebrar una gran aventura.
+          </p>
+
+          <span>
+            Toca para abrir ✨
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="envelope-front"></div>
+
+      <div class="envelope-flap-3d"></div>
+
+      <div class="stamp">
+        🚀
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- PERSONAJES -->
+
+  <div class="characters-intro">
+
+    <img
+      src="https://pngimg.com/d/woody_PNG52.png"
+      class="woody-intro"
+      alt="Woody"
+    >
+
+    <img
+      src="https://pngimg.com/d/buzz_lightyear_PNG50.png"
+      class="buzz-intro"
+      alt="Buzz"
+    >
+
+  </div>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="scene" id="main-scene">
+
+  <div class="sky"></div>
+
+  <div class="balloon b1"></div>
+  <div class="balloon b2"></div>
+  <div class="balloon b3"></div>
+
+  <div class="intro">
+
+    <div class="mini-title">
+      Estás invitado al cumpleaños de
+    </div>
+
+    <div class="main-title">
+      BARBARA<br>REGINA
+    </div>
+
+    <div class="birthday">
+      ¡CELEBRA CON NOSOTROS!
+    </div>
+
+    <div class="card">
+
+      <p>🎂 Cumpleaños Infantil</p>
+
+      <p>📅 01 Agosto 2026</p>
+
+      <p>⏰ 13:00 Horas</p>
+
+      <p>🎁 Si no hay regalo no hay comida!</p>
+
+      <a
+        class="map"
+        href="https://maps.app.goo.gl/YH9CP4EsP8xYFiTn6"
+        target="_blank"
+      >
+        📍 1a. Cda. Apango 15-3, Gral Felipe Berriozabal, CDMX
+      </a>
+
+    </div>
+
+    <div class="countdown">
+
+      <div class="time-box">
+        <span id="days">00</span>
+        <small>Días</small>
+      </div>
+
+      <div class="time-box">
+        <span id="hours">00</span>
+        <small>Horas</small>
+      </div>
+
+      <div class="time-box">
+        <span id="minutes">00</span>
+        <small>Min</small>
+      </div>
+
+    </div>
+
+    <a
+      href="https://wa.me/5535296643"
+      target="_blank"
+      class="whatsapp-btn"
+    >
+      CONFIRMAR POR WHATSAPP
+    </a>
+
+  </div>
+
+</div>
+
+<!-- AUDIO -->
+
+<audio id="music" loop>
+  <source
+    src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8c4a4d6d38.mp3?filename=cinematic-documentary-115669.mp3"
+    type="audio/mpeg"
+  >
+</audio>
+
+<button class="music-btn" id="musicBtn">
+  ♫
+</button>
+
+<script>
+
+/* =========================
+   LOADER
+========================= */
+
+window.addEventListener("load",()=>{
+
+  setTimeout(()=>{
+
+    gsap.to("#loader",{
+
+      opacity:0,
+      duration:1.5,
+
+      onComplete:()=>{
+
+        document.getElementById("loader").style.display="none";
+
+      }
+
+    });
+
+  },2000);
+
+});
+
+/* =========================
+   SOBRE 3D
+========================= */
+
+const envelopeWrapper = document.querySelector(".envelope-3d-wrapper");
+const envelope3D = document.querySelector(".envelope-3d");
+
+const introScreen = document.getElementById("pantalla-intro");
+const mainScene = document.getElementById("main-scene");
+
+/* MOUSE */
+
+envelopeWrapper.addEventListener("mousemove",(e)=>{
+
+  const rect = envelopeWrapper.getBoundingClientRect();
+
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  const rotateY = ((x / rect.width) - 0.5) * 20;
+  const rotateX = -((y / rect.height) - 0.5) * 20;
+
+  envelope3D.style.transform = `
+    rotateX(${rotateX}deg)
+    rotateY(${rotateY}deg)
+    scale(1.05)
+  `;
+
+});
+
+/* RESET */
+
+envelopeWrapper.addEventListener("mouseleave",()=>{
+
+  envelope3D.style.transform = `
+    rotateX(0deg)
+    rotateY(0deg)
+    scale(1)
+  `;
+
+});
+
+/* CLICK */
+
+envelopeWrapper.addEventListener("click",()=>{
+
+  envelopeWrapper.classList.add("open-envelope");
+
+  /* SOUND */
+
+  const openSound = new Audio(
+    "https://cdn.pixabay.com/download/audio/2022/03/15/audio_8c4a4d6d38.mp3?filename=magic-ambience-115670.mp3"
+  );
+
+  openSound.volume = 0.5;
+  openSound.play();
+
+  /* WOODY */
+
+  gsap.to(".woody-intro",{
+    x:-300,
+    opacity:0,
+    duration:2
+  });
+
+  /* BUZZ */
+
+  gsap.to(".buzz-intro",{
+    x:300,
+    opacity:0,
+    duration:2
+  });
+
+  /* INTRO */
+
+  gsap.to(".cinematic-intro",{
+
+    scale:1.4,
+    opacity:0,
+    duration:3,
+    ease:"power4.inOut",
+
+    onComplete:()=>{
+
+      introScreen.style.display="none";
+
+      mainScene.style.opacity="1";
+      mainScene.style.visibility="visible";
+
+      document.body.style.overflow="auto";
+
+    }
+
+  });
+
+});
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+const targetDate = new Date(
+  "2026-08-01T13:00:00"
+).getTime();
+
+setInterval(()=>{
+
+  const now = new Date().getTime();
+
+  const distance = targetDate - now;
+
+  const days = Math.floor(
+    distance / (1000 * 60 * 60 * 24)
+  );
+
+  const hours = Math.floor(
+    (distance % (1000 * 60 * 60 * 24))
+    / (1000 * 60 * 60)
+  );
+
+  const minutes = Math.floor(
+    (distance % (1000 * 60 * 60))
+    / (1000 * 60)
+  );
+
+  document.getElementById("days").innerHTML = days;
+  document.getElementById("hours").innerHTML = hours;
+  document.getElementById("minutes").innerHTML = minutes;
+
+},1000);
+
+/* =========================
+   MUSIC
+========================= */
+
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+
+let playing = false;
+
+musicBtn.addEventListener("click",()=>{
+
+  if(!playing){
+
+    music.play();
+
+    musicBtn.innerHTML = "❚❚";
+
+    playing = true;
+
+  }else{
+
+    music.pause();
+
+    musicBtn.innerHTML = "♫";
+
+    playing = false;
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
