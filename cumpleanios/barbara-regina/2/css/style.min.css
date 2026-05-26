@@ -473,23 +473,23 @@
         }
 
         .img-barby {
-            text-align: center;
 
             position: absolute;
-            bottom: 20vh;
-            margin: auto;
-            /* width: 120px; */
-
-            animation: fadeInOutIntro 4s forwards;
-
-            width: 20%;
-            max-width: 500px;
-
+            bottom: 10vh;
+            transform: translateX(-50%);
+            width: 70vw;
+            max-width: 320px;
             height: auto;
-
             display: block;
+            animation: fadeInOutIntro 4s forwards;
+        }
 
-
+        @media(max-width:768px) {
+            .img-barby {
+                width: 85vw;
+                max-width: 260px;
+                bottom: 18vh;
+            }
         }
 
         /* =========================
