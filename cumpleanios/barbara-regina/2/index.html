@@ -1,66 +1,74 @@
 <!DOCTYPE html>
 <html lang=es>
+
 <head>
-<meta charset=UTF-8 />
-<meta name=viewport content="width=device-width, initial-scale=1.0" />
-<title>Barbara Regina - Invitación del 2do cumpleaños</title>
-<link rel=preconnect href=https://fonts.googleapis.com>
-<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel=stylesheet>
-<link rel=stylesheet href=./css/style.min.css />
+    <meta charset=UTF-8 />
+    <meta name=viewport content="width=device-width, initial-scale=1.0" />
+    <title>Barbara Regina - Invitación del 2do cumpleaños</title>
+    <link rel=preconnect href=https://fonts.googleapis.com>
+    <link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel=stylesheet>
+    <link rel=stylesheet href=./css/style.min.css />
 </head>
+
 <body>
-<div class=loader id=loader>
-<div class=loader-logo>BARBARA REGINA</div>
-<div class=loader-text>CARGANDO AVENTURA...</div>
-<img class=img-fluid src=jessie.gif alt=Jessie class=gif-jessie>
-</div>
-<div id=pantalla-intro>
-<div class=texto-intro>Un estudio de animación imaginario presenta...</div>
-<button class=boton-entrar id=btn-entrar>Entrar a la habitación</button>
-</div>
-<div class=scene id=main-scene>
-<div class=sky></div>
-<div class=sunlight></div>
-<div class="balloon b1"></div>
-<div class="balloon b2"></div>
-<div class="balloon b3"></div>
-<div class=blocks-2>
-<div class="block block-2">2</div>
-</div>
-<div class=blocks>
-<div class=block>A</div>
-<div class=block>Ñ</div>
-<div class=block>O</div>
-<div class=block>S</div>
-</div>
-<div class=intro>
-<div class=mini-title>Estás invitado al cumpleaños de</div>
-<div class=main-title>BARBARA<br>REGINA</div>
-<div class=birthday>¡CELEBRA CON NOSOTROS!</div>
-<div class=card>
-<p>🎂 Cumpleaños Infantil</p>
-<p>📅 01 Agosto 2026</p>
-<p>⏰ 13:00 Horas</p>
-<p>🎁 Asistencia opcional, regalo obligatorio!</p>
-<a class=map href=https://maps.app.goo.gl/YH9CP4EsP8xYFiTn6 target=_blank>
-📍 1a. Cda. Apango 15-3, Gral Felipe Berriozabal, CDMX
-</a>
-</div>
-<div class=countdown>
-<div class=time-box><span id=days>00</span><small>Días</small></div>
-<div class=time-box><span id=hours>00</span><small>Horas</small></div>
-<div class=time-box><span id=minutes>00</span><small>Min</small></div>
-</div>
-<a href=https://wa.me/5535296643 target=_blank class=whatsapp-btn>CONFIRMAR POR WHATSAPP</a>
-</div>
-<div class=floor></div>
-<div class=confetti id=confetti></div>
-<button class=music-btn id=musicBtn>♫</button>
-</div>
-<audio id=music loop>
-<source src=toy-story-music.mp3 type=audio/mpeg>
-</audio>
-<script src=./js/main.min.js></script>
+    <div class=loader id=loader>
+        <div class=loader-logo>BARBARA REGINA</div>
+        <div class=loader-text>CARGANDO AVENTURA...</div>
+        <img class=img-fluid src=jessie.gif alt=Jessie class=gif-jessie>
+    </div>
+    <div id=pantalla-intro>
+        <div class=texto-intro>Un estudio de animación imaginario presenta...</div>
+        <button class=boton-entrar id=btn-entrar>Entrar a la habitación</button>
+    </div>
+    <div class=scene id=main-scene>
+        <div class=sky></div>
+        <div class=sunlight></div>
+        <div class="balloon b1"></div>
+        <div class="balloon b2"></div>
+        <div class="balloon b3"></div>
+        <div class=blocks-2>
+            <div class="block block-2">2</div>
+        </div>
+        <div class=blocks>
+            <div class=block>A</div>
+            <div class=block>Ñ</div>
+            <div class=block>O</div>
+            <div class=block>S</div>
+        </div>
+        <div class=intro>
+            <div class=mini-title>Estás invitado al cumpleaños de</div>
+            <div class=main-title>BARBARA<br>REGINA</div>
+            <div class=birthday>¡CELEBRA CON NOSOTROS!</div>
+            <div class=card>
+                <p>🎂 Cumpleaños Infantil</p>
+                <p>📅 01 Agosto 2026</p>
+                <p>⏰ 13:00 Horas</p>
+                <p>🎁 Asistencia opcional, regalo obligatorio!</p>
+                <a class=map href=https://maps.app.goo.gl/YH9CP4EsP8xYFiTn6 target=_blank>
+                    📍 1a. Cda. Apango 15-3, Gral Felipe Berriozabal, CDMX
+                </a>
+            </div>
+            <div class=countdown>
+                <div class="time-box"><span id=days>00</span><small>Días</small></div>
+                <div class="time-box"><span id=hours>00</span><small>Horas</small></div>
+                <div class="time-box"><span id=minutes>00</span><small>Min</small></div>
+            </div>
+            <div class="d-flex justify-content-center gap-3">
+                <a href=https://wa.me/5535296643 target=_blank class="whatsapp-btn">✓ CONFIRMAR</a>
+                <a href="birthday.ics" download class="calendar-btn">
+                    📅 AGENDAR
+                </a>
+            </div>
+        </div>
+        <div class=floor></div>
+        <div class=confetti id=confetti></div>
+        <button class=music-btn id=musicBtn>♫</button>
+    </div>
+    <audio id=music loop>
+        <source src=toy-story-music.mp3 type=audio/mpeg>
+    </audio>
+    <script src=./js/main.min.js></script>
 </body>
+
 </html>
