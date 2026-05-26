@@ -5,21 +5,21 @@ METHOD:PUBLISH
 
 BEGIN:VEVENT
 
-SUMMARY:Cumpleanos Barbara Regina
+SUMMARY:🎂 Cumpleaños de Barbara Regina
 
 DTSTART:20260801T130000
 DTEND:20260801T180000
 
 LOCATION:1a. Cda. Apango 15-3, Gral Felipe Berriozabal, CDMX
 
-DESCRIPTION:Estas invitado al cumpleanos de Barbara Regina. Maps: https://maps.app.goo.gl/YH9CP4EsP8xYFiTn6
+DESCRIPTION:¡Estás invitado al cumpleaños de Barbara Regina!.📍 Ubicación:1a. Cda. Apango 15-3, Gral Felipe Berriozabal, CDMX.🗺️ Google Maps:https://maps.app.goo.gl/YH9CP4EsP8xYFiTn6
 
 STATUS:CONFIRMED
 
 BEGIN:VALARM
 TRIGGER:-P1D
 ACTION:DISPLAY
-DESCRIPTION:Recordatorio
+DESCRIPTION:Recordatorio de cumpleaños
 END:VALARM
 
 END:VEVENT
