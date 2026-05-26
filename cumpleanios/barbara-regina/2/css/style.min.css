@@ -281,7 +281,7 @@
        BUTTONS
     ========================== */
         .whatsapp-btn {
-            margin-top: 22vh;
+            margin-top: 18vh;
             background: #25D366;
             color: white;
             text-decoration: none;
@@ -301,7 +301,7 @@
 
         .calendar-btn {
 
-            margin-top: 22vh;
+            margin-top: 18vh;
             background: linear-gradient(135deg,
                     #ff4d4d,
                     #ff7b00);
