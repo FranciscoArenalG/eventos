@@ -471,15 +471,25 @@
             z-index: 15;
             animation: bounce 2s infinite;
         }
+
         .img-barby {
             text-align: center;
-            
+
             position: absolute;
             bottom: 20vh;
-            margin: 0 auto;
-            width: 120px;
-            
+            margin: auto;
+            /* width: 120px; */
+
             animation: fadeInOutIntro 4s forwards;
+
+            width: 20%;
+            max-width: 500px;
+
+            height: auto;
+
+            display: block;
+
+
         }
 
         /* =========================
