@@ -473,9 +473,9 @@
         }
 
         .img-barby {
-
+            margin: auto;
             position: absolute;
-            bottom: 10vh;
+            /* bottom: 10vh; */
             transform: translateX(-50%);
             width: 70vw;
             max-width: 320px;
@@ -486,9 +486,9 @@
 
         @media(max-width:768px) {
             .img-barby {
-                width: 85vw;
+                width: 75vw;
                 max-width: 260px;
-                bottom: 18vh;
+                /* bottom: 18vh; */
             }
         }
 
